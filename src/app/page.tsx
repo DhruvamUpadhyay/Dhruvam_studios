@@ -1,6 +1,9 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ServicesSection } from "@/components/sections/ServicesSection";
+import { ProjectsSection } from "@/components/sections/ProjectsSection";
+import { AboutSection } from "@/components/sections/AboutSection";
+import { ContactSection } from "@/components/sections/ContactSection";
 
 export default function Home() {
   return (
@@ -111,6 +114,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Render the full original single-page flow */}
+      <ServicesSection />
+      <ProjectsSection />
+      <AboutSection />
+      <ContactSection />
     </>
   );
 }
