@@ -12,7 +12,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Dhruvam Studios | Intelligent Digital Ecosystems",
+  title: "Dhruvam Studios",
   description: "Enterprise Automation, Full-Stack Web Apps, and AI Integration.",
 };
 
