@@ -44,7 +44,7 @@ export function AboutSection() {
             <div className="absolute top-0 left-0 w-full h-full border-4 border-blue-500/20 z-20 pointer-events-none"></div>
             <div className="absolute top-2 left-2 w-[calc(100%-16px)] h-[calc(100%-16px)] border border-blue-400/30 z-20 pointer-events-none"></div>
 
-            <img src="/1755622160924.jpg" alt="Dhruvam Upadhyay" className="object-cover w-full h-full hover:scale-105 transition-transform duration-700" />
+            <img src="/profile.jpg" alt="Dhruvam Upadhyay" className="object-cover w-full h-full hover:scale-105 transition-transform duration-700" />
 
             {/* Overlay Gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 via-transparent to-transparent opacity-60"></div>
