@@ -23,13 +23,13 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center mt-8 gap-4">
             <Link
-              href="/services"
+              href="/#expertise"
               className="hero-element btn-tech-primary inline-flex items-center justify-center px-10 py-4 text-sm font-bold tracking-widest uppercase rounded min-w-[200px]"
             >
               View Intelligence
             </Link>
             <Link
-              href="/contact"
+              href="/#contact"
               className="hero-element btn-tech-primary inline-flex items-center justify-center px-10 py-4 text-sm font-bold tracking-widest uppercase rounded min-w-[200px]"
             >
               Deploy a Project
