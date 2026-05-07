@@ -4,7 +4,7 @@ import { User, Menu } from "lucide-react";
 
 export function Navbar() {
   return (
-    <nav className="fixed w-full z-50 glass-nav transition-all duration-300">
+    <nav className="fixed w-full z-50 glass-nav bg-[#0F172A]/80 backdrop-blur-md border-b border-slate-400/10 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
           <div className="w-8 h-8 rounded bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold group-hover:shadow-[0_0_15px_rgba(59,130,246,0.6)] transition-all">

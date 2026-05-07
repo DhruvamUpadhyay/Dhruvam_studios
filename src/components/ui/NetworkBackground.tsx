@@ -328,16 +328,16 @@ export function NetworkBackground() {
           }
         }
 
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
+        const dx = this.x - mouse.x;
+        const dy = this.y - mouse.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         const interactionRadius = 220;
 
         if (dist < interactionRadius) {
           const force = (interactionRadius - dist) / interactionRadius;
           const angle = Math.atan2(dy, dx);
-          this.vx += Math.cos(angle) * force * 0.05;
-          this.vy += Math.sin(angle) * force * 0.05;
+          this.vx += Math.cos(angle) * force * 0.2;
+          this.vy += Math.sin(angle) * force * 0.2;
         }
 
         this.x += this.vx;
