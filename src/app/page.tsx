@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { ServicesSection } from "@/components/sections/ServicesSection";
-import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 
@@ -23,10 +22,10 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center mt-8 gap-4">
             <Link
-              href="/#expertise"
+              href="/portfolio"
               className="hero-element btn-tech-primary inline-flex items-center justify-center px-10 py-4 text-sm font-bold tracking-widest uppercase rounded min-w-[200px]"
             >
-              View Intelligence
+              View Portfolio
             </Link>
             <Link
               href="/#contact"
@@ -40,84 +39,47 @@ export default function Home() {
 
       <section className="py-24 px-6 md:px-16 bg-transparent relative z-10">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-14">
             <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-4">
-              <span className="text-white">Tech </span>
-              <span className="gradient-text">Stack</span>
+              <span className="text-white">Core </span>
+              <span className="gradient-text">Skills</span>
             </h2>
             <p className="text-base md:text-lg text-[#64748B]">
-              Tools and technologies I use to create exceptional solutions
+              What I bring to the table
             </p>
           </div>
 
-          {/* Proficiency Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Python */}
-            <div className="proficiency-card p-6 bg-[#0F172A] border border-slate-400/10 rounded">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 flex items-center justify-center bg-[#3776AB] rounded">
-                  <span className="text-white font-bold text-sm">Py</span>
-                </div>
-                <span className="font-bold text-lg text-white">Python</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4 max-w-5xl mx-auto">
+            {[
+              "Python & Automation",
+              "Full-Stack Web Development",
+              "AI & LLM Integration",
+              "Backend Architecture",
+              "API Design & Development",
+              "Cloud & DevOps (AWS, Docker)",
+              "Local LLM Deployment",
+              "Prompt Engineering",
+              "Database Design (SQL & NoSQL)",
+              "React / Next.js Frontend",
+              "System Architecture",
+              "Technical Research & R&D",
+            ].map((skill) => (
+              <div
+                key={skill}
+                className="flex items-center gap-3 py-3 px-4 rounded-lg hover:bg-white/[0.03] transition-all duration-300 group"
+              >
+                <div className="w-2 h-2 rounded-full bg-blue-500 shrink-0 group-hover:shadow-[0_0_8px_rgba(56,189,248,0.6)] transition-all duration-300"></div>
+                <span className="text-base md:text-lg font-medium text-slate-300 group-hover:text-white transition-colors duration-300">
+                  {skill}
+                </span>
               </div>
-            </div>
-
-            {/* React */}
-            <div className="proficiency-card p-6 bg-[#0F172A] border border-slate-400/10 rounded">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 flex items-center justify-center bg-[#61DAFB] rounded">
-                  <span className="text-black font-bold text-sm">Re</span>
-                </div>
-                <span className="font-bold text-lg text-white">React</span>
-              </div>
-            </div>
-
-            {/* Next.js */}
-            <div className="proficiency-card p-6 bg-[#0F172A] border border-slate-400/10 rounded">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 flex items-center justify-center bg-black border border-white/20 rounded">
-                  <span className="text-white font-bold text-sm">N</span>
-                </div>
-                <span className="font-bold text-lg text-white">Next.js</span>
-              </div>
-            </div>
-
-            {/* TensorFlow */}
-            <div className="proficiency-card p-6 bg-[#0F172A] border border-slate-400/10 rounded">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 flex items-center justify-center bg-[#FF6F00] rounded">
-                  <span className="text-white font-bold text-sm">TF</span>
-                </div>
-                <span className="font-bold text-lg text-white">TensorFlow</span>
-              </div>
-            </div>
-
-            {/* Docker */}
-            <div className="proficiency-card p-6 bg-[#0F172A] border border-slate-400/10 rounded">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 flex items-center justify-center bg-[#2496ED] rounded">
-                  <span className="text-white font-bold text-sm">Do</span>
-                </div>
-                <span className="font-bold text-lg text-white">Docker</span>
-              </div>
-            </div>
-
-            {/* AWS */}
-            <div className="proficiency-card p-6 bg-[#0F172A] border border-slate-400/10 rounded">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 flex items-center justify-center bg-[#FF9900] rounded">
-                  <span className="text-white font-bold text-sm">AWS</span>
-                </div>
-                <span className="font-bold text-lg text-white">AWS</span>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Render the full original single-page flow */}
       <ServicesSection />
-      <ProjectsSection />
       <AboutSection />
       <ContactSection />
     </>

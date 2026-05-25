@@ -331,22 +331,38 @@ export function NetworkBackground() {
         const dx = this.x - mouse.x;
         const dy = this.y - mouse.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        const interactionRadius = 220;
+        const interactionRadius = 200;
 
-        if (dist < interactionRadius) {
-          const force = (interactionRadius - dist) / interactionRadius;
+        if (dist < interactionRadius && dist > 1) {
           const angle = Math.atan2(dy, dx);
-          this.vx += Math.cos(angle) * force * 0.2;
-          this.vy += Math.sin(angle) * force * 0.2;
+          const normalizedDist = dist / interactionRadius;
+
+          if (dist > 50) {
+            // Gentle attraction — just a tiny nudge toward cursor
+            // Force falls off with distance so it's strongest at mid-range
+            const pullStrength = (1 - normalizedDist) * 0.06;
+            this.vx -= Math.cos(angle) * pullStrength;
+            this.vy -= Math.sin(angle) * pullStrength;
+
+            // Tiny swirl for visual flair (very subtle)
+            this.vx += -Math.sin(angle) * pullStrength * 0.3;
+            this.vy += Math.cos(angle) * pullStrength * 0.3;
+          } else {
+            // Too close — push away gently to prevent piling
+            const pushStrength = (1 - dist / 50) * 0.15;
+            this.vx += Math.cos(angle) * pushStrength;
+            this.vy += Math.sin(angle) * pushStrength;
+          }
         }
 
         this.x += this.vx;
         this.y += this.vy;
-        this.vx *= 0.96;
-        this.vy *= 0.96;
+        this.vx *= 0.97;
+        this.vy *= 0.97;
 
-        this.vx += (this.targetVx - this.vx) * 0.02;
-        this.vy += (this.targetVy - this.vy) * 0.02;
+        // Strong drift recovery — particles always return to natural flow
+        this.vx += (this.targetVx - this.vx) * 0.04;
+        this.vy += (this.targetVy - this.vy) * 0.04;
 
         this.pulse += this.pulseSpeed;
         this.resetToSpace();
@@ -376,10 +392,19 @@ export function NetworkBackground() {
         const dx = mouse.x - this.x;
         const dy = mouse.y - this.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 220) alpha += (1 - dist / 220) * 0.5;
+        const proximity = dist < 200 ? (1 - dist / 200) : 0;
+        alpha += proximity * 0.3;
         alpha = Math.min(1, alpha);
 
-        const size = this.size * (0.5 + this.z * 1.0);
+        // Subtle size boost near cursor
+        const sizeBoost = 1 + proximity * 0.2;
+        const size = this.size * (0.5 + this.z * 1.0) * sizeBoost;
+
+        // Soft glow for particles close to cursor
+        if (proximity > 0.6) {
+          ctx!.shadowBlur = 8 * proximity;
+          ctx!.shadowColor = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${proximity * 0.3})`;
+        }
 
         const gradient = ctx!.createRadialGradient(
           this.x,
@@ -405,6 +430,11 @@ export function NetworkBackground() {
         ctx!.beginPath();
         ctx!.arc(this.x, this.y, size * 3, 0, Math.PI * 2);
         ctx!.fill();
+
+        // Reset shadow after drawing
+        if (proximity > 0.6) {
+          ctx!.shadowBlur = 0;
+        }
       }
     }
 
